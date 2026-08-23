@@ -6,15 +6,15 @@ const StatusDot = ({ status }: { status: string }) => {
 };
 
 export const ADMETPanel = ({ data }: { data: any }) => {
-  if (!data) return <div className="p-4 bg-gray-900 rounded-lg border border-gray-800 animate-pulse h-64"></div>;
+  if (!data) return <div className="p-4 bg-navy-900 rounded-lg border border-navy-800 animate-pulse h-64"></div>;
 
   return (
-    <div className="bg-gray-900 border border-gray-800 rounded-lg p-5">
-      <h3 className="text-gray-400 text-sm mb-4">ADMET Intelligence</h3>
+    <div className="bg-navy-900 border border-navy-800 rounded-lg p-5">
+      <h3 className="text-primary text-sm mb-4 font-semibold tracking-wider">ADMET PREDICTION</h3>
 
       <div className="space-y-3">
         {Object.entries(data.admet).map(([key, value]) => (
-          <div key={key} className="flex items-center justify-between bg-gray-800/30 p-2.5 rounded border border-gray-800/50">
+          <div key={key} className="flex items-center justify-between bg-navy-800/30 p-2.5 rounded border border-navy-800/50">
             <span className="text-sm text-gray-300">{key}</span>
             <div className="flex items-center gap-2">
               <StatusDot status={value as string} />
@@ -27,45 +27,76 @@ export const ADMETPanel = ({ data }: { data: any }) => {
   );
 };
 
-export const PregnancySafetyPanel = ({ data }: { data: any }) => {
-  if (!data) return <div className="p-4 bg-gray-900 rounded-lg border border-gray-800 animate-pulse h-64"></div>;
-
-  const safety = data.pregnancy_safety;
+export const MolecularInfoPanel = ({ data }: { data: any }) => {
+  if (!data) return null;
+  const info = data.molecular_info;
 
   return (
-    <div className="bg-gray-900 border border-gray-800 rounded-lg p-5">
-      <h3 className="text-gray-400 text-sm mb-4">Pregnancy Safety Prediction</h3>
-
-      <div className="space-y-4">
+    <div className="bg-navy-900 border border-navy-800 rounded-lg p-5">
+      <h3 className="text-primary text-sm mb-4 font-semibold tracking-wider">MOLECULAR INFORMATION</h3>
+      <div className="grid grid-cols-2 gap-4">
         <div>
-          <div className="flex justify-between mb-1">
-            <span className="text-sm text-gray-300">Placental Transfer</span>
-            <span className="text-sm font-semibold text-blue-400">{Math.round(safety.placenta_transfer_prob * 100)}%</span>
-          </div>
-          <div className="w-full bg-gray-800 rounded-full h-2">
-            <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${safety.placenta_transfer_prob * 100}%` }}></div>
-          </div>
+          <p className="text-xs text-gray-500 mb-1">Atoms</p>
+          <p className="text-sm font-semibold text-gray-200">{info.atoms}</p>
         </div>
-
         <div>
-          <div className="flex justify-between mb-1">
-            <span className="text-sm text-gray-300">Breast Milk Transfer</span>
-            <span className="text-sm font-semibold text-purple-400">{Math.round(safety.milk_transfer_prob * 100)}%</span>
-          </div>
-          <div className="w-full bg-gray-800 rounded-full h-2">
-            <div className="bg-purple-500 h-2 rounded-full" style={{ width: `${safety.milk_transfer_prob * 100}%` }}></div>
-          </div>
+          <p className="text-xs text-gray-500 mb-1">Bonds</p>
+          <p className="text-sm font-semibold text-gray-200">{info.bonds}</p>
         </div>
+        <div>
+          <p className="text-xs text-gray-500 mb-1">Rings</p>
+          <p className="text-sm font-semibold text-gray-200">{info.rings}</p>
+        </div>
+        <div>
+          <p className="text-xs text-gray-500 mb-1">HBD</p>
+          <p className="text-sm font-semibold text-gray-200">{info.hbd}</p>
+        </div>
+        <div>
+          <p className="text-xs text-gray-500 mb-1">HBA</p>
+          <p className="text-sm font-semibold text-gray-200">{info.hba}</p>
+        </div>
+        <div>
+          <p className="text-xs text-gray-500 mb-1">TPSA</p>
+          <p className="text-sm font-semibold text-gray-200">{info.tpsa}</p>
+        </div>
+        <div>
+          <p className="text-xs text-gray-500 mb-1">LogP</p>
+          <p className="text-sm font-semibold text-gray-200">{info.logp}</p>
+        </div>
+        <div>
+          <p className="text-xs text-gray-500 mb-1">Solubility</p>
+          <p className="text-sm font-semibold text-gray-200">{info.solubility}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-        <div className="pt-3 border-t border-gray-800 grid grid-cols-2 gap-4">
-          <div>
-            <p className="text-xs text-gray-500 mb-1">Fetal Exposure Risk</p>
-            <p className="text-sm font-semibold text-gray-200">{safety.placenta_risk}</p>
-          </div>
-          <div>
-            <p className="text-xs text-gray-500 mb-1">Developmental Tox</p>
-            <p className="text-sm font-semibold text-gray-200">{safety.toxicity_risk}</p>
-          </div>
+export const DrugLikenessPanel = ({ data }: { data: any }) => {
+  if (!data) return null;
+  const lipinski = data.molecular_info.lipinski;
+
+  return (
+    <div className="bg-navy-900 border border-navy-800 rounded-lg p-5">
+      <h3 className="text-primary text-sm mb-4 font-semibold tracking-wider">DRUG LIKENESS</h3>
+      <p className="text-xs text-gray-400 mb-4 uppercase">Lipinski Rule of 5</p>
+
+      <div className="space-y-3">
+        <div className="flex items-center gap-3">
+          <span className={`text-sm ${lipinski.mw ? 'text-green-400' : 'text-red-400'}`}>{lipinski.mw ? '✓' : '✗'}</span>
+          <span className="text-sm text-gray-300">MW &lt; 500</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className={`text-sm ${lipinski.logp ? 'text-green-400' : 'text-red-400'}`}>{lipinski.logp ? '✓' : '✗'}</span>
+          <span className="text-sm text-gray-300">LogP &lt; 5</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className={`text-sm ${lipinski.hbd ? 'text-green-400' : 'text-red-400'}`}>{lipinski.hbd ? '✓' : '✗'}</span>
+          <span className="text-sm text-gray-300">HBD &lt; 5</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className={`text-sm ${lipinski.hba ? 'text-green-400' : 'text-red-400'}`}>{lipinski.hba ? '✓' : '✗'}</span>
+          <span className="text-sm text-gray-300">HBA &lt; 10</span>
         </div>
       </div>
     </div>

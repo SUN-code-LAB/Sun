@@ -1,7 +1,9 @@
-INFO:     Started server process [21302]
+INFO:     Started server process [204046]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     127.0.0.1:46100 - "GET /api/analyze?smiles=CC(=O)OC1=CC=CC=C1C(=O)O HTTP/1.1" 200 OK
-INFO:     127.0.0.1:42744 - "GET /api/analyze?smiles=CC(%3DO)OC1%3DCC%3DCC%3DC1C(%3DO)O HTTP/1.1" 200 OK
-INFO:     127.0.0.1:42744 - "GET /api/analyze?smiles=CC(%3DO)OC1%3DCC%3DCC%3DC1C(%3DO)O HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32818 - "GET /api/analyze?smiles=CC%28%3DO%29OC1%3DCC%3DCC%3DC1C%28%3DO%29O HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [204046]
