@@ -3,10 +3,10 @@ import { Search, Bell, User } from 'lucide-react';
 
 export const Header = () => {
   return (
-    <header className="h-16 bg-gray-900 border-b border-gray-800 flex items-center justify-between px-6">
+    <header className="h-16 bg-navy-900 border-b border-navy-800 flex items-center justify-between px-6">
       <div>
-        <h2 className="text-xl font-bold text-white">MaternalSafe AI X</h2>
-        <p className="text-xs text-gray-400">AI-Powered Maternal, Fetal & Lactation Chemical Safety Platform</p>
+        <h2 className="text-xl font-bold text-white">RENAL ADMET AI</h2>
+        <p className="text-xs text-gray-400">AI-Powered Molecular Safety Intelligence Platform</p>
       </div>
 
       <div className="flex items-center gap-6">
@@ -14,8 +14,8 @@ export const Header = () => {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
           <input
             type="text"
-            placeholder="Search Compound..."
-            className="bg-gray-800 text-sm text-white rounded-full pl-10 pr-4 py-1.5 focus:outline-none focus:ring-1 focus:ring-blue-500 w-64 border border-gray-700"
+            placeholder="Search PubChem CID or Name"
+            className="bg-navy-800 text-sm text-white rounded-full pl-10 pr-4 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary w-64 border border-navy-800"
           />
         </div>
 

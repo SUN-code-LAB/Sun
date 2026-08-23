@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "MaternalSafe AI",
-  description: "AI-Powered Maternal, Fetal & Lactation Chemical Safety Platform",
+  title: "RENAL ADMET AI",
+  description: "AI-Powered Molecular Safety Intelligence Platform",
 };
 
 export default function RootLayout({
