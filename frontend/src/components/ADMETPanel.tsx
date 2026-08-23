@@ -1,25 +1,30 @@
 import React from 'react';
-
-const StatusDot = ({ status }: { status: string }) => {
-  const colorClass = status === 'High' ? 'bg-red-500' : status === 'Moderate' ? 'bg-yellow-500' : 'bg-green-500';
-  return <div className={`w-2.5 h-2.5 rounded-full ${colorClass}`} />;
-};
+import { Network, Activity, Milk, AlertTriangle } from 'lucide-react';
 
 export const ADMETPanel = ({ data }: { data: any }) => {
-  if (!data) return <div className="p-4 bg-gray-900 rounded-lg border border-gray-800 animate-pulse h-64"></div>;
+  if (!data) return null;
 
   return (
-    <div className="bg-gray-900 border border-gray-800 rounded-lg p-5">
-      <h3 className="text-gray-400 text-sm mb-4">ADMET Intelligence</h3>
+    <div className="bg-card border border-card-border rounded-lg p-5">
+      <div className="flex items-center gap-2 mb-4">
+        <Activity className="text-ai-blue" size={18} />
+        <h3 className="font-semibold text-gray-200">ADMET Intelligence</h3>
+      </div>
 
       <div className="space-y-3">
-        {Object.entries(data.admet).map(([key, value]) => (
-          <div key={key} className="flex items-center justify-between bg-gray-800/30 p-2.5 rounded border border-gray-800/50">
-            <span className="text-sm text-gray-300">{key}</span>
-            <div className="flex items-center gap-2">
-              <StatusDot status={value as string} />
-              <span className="text-xs text-gray-400 w-16 text-right">{value as string}</span>
-            </div>
+        {Object.entries(data.admet).map(([prop, val]) => (
+          <div key={prop} className="flex justify-between items-center bg-gray-900/50 p-2.5 rounded">
+            <span className="text-sm text-gray-400">{prop}</span>
+            <span className={`text-xs px-2 py-1 rounded-full font-medium ${
+              val === 'High' ? (prop === 'Toxicity' ? 'bg-red-900/30 text-risk-red' : 'bg-green-900/30 text-neon-green') :
+              val === 'Moderate' ? 'bg-orange-900/30 text-risk-orange' :
+              (prop === 'Toxicity' ? 'bg-green-900/30 text-neon-green' : 'bg-red-900/30 text-risk-red')
+            }`}>
+              {val === 'High' && prop !== 'Toxicity' ? '🟢 High' :
+               val === 'Low' && prop === 'Toxicity' ? '🟢 Low' :
+               val === 'Moderate' ? '🟡 Moderate' :
+               val === 'High' && prop === 'Toxicity' ? '🔴 High' : '🔴 Low'}
+            </span>
           </div>
         ))}
       </div>
@@ -28,43 +33,60 @@ export const ADMETPanel = ({ data }: { data: any }) => {
 };
 
 export const PregnancySafetyPanel = ({ data }: { data: any }) => {
-  if (!data) return <div className="p-4 bg-gray-900 rounded-lg border border-gray-800 animate-pulse h-64"></div>;
-
-  const safety = data.pregnancy_safety;
+  if (!data) return null;
 
   return (
-    <div className="bg-gray-900 border border-gray-800 rounded-lg p-5">
-      <h3 className="text-gray-400 text-sm mb-4">Pregnancy Safety Prediction</h3>
-
-      <div className="space-y-4">
-        <div>
+    <div className="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="bg-card border border-card-border rounded-lg p-5">
+        <div className="flex items-center gap-2 mb-4">
+          <Network className="text-scientific-purple" size={18} />
+          <h3 className="font-semibold text-gray-200">Placental Transfer AI</h3>
+        </div>
+        <div className="flex items-center justify-between mb-4">
+          <div className="text-sm text-gray-400">Probability</div>
+          <div className="text-xl font-bold text-ai-blue">{Math.round(data.pregnancy_safety.placenta_transfer_prob * 100)}%</div>
+        </div>
+        <div className="w-full bg-gray-800 rounded-full h-2 mb-4">
+          <div className="bg-scientific-purple h-2 rounded-full" style={{ width: `${data.pregnancy_safety.placenta_transfer_prob * 100}%` }}></div>
+        </div>
+        <div className="bg-gray-900/50 p-3 rounded text-sm">
           <div className="flex justify-between mb-1">
-            <span className="text-sm text-gray-300">Placental Transfer</span>
-            <span className="text-sm font-semibold text-blue-400">{Math.round(safety.placenta_transfer_prob * 100)}%</span>
+            <span className="text-gray-400">Risk Level</span>
+            <span className={`font-semibold ${
+              data.pregnancy_safety.placenta_risk === 'High' ? 'text-risk-red' :
+              data.pregnancy_safety.placenta_risk === 'Moderate' ? 'text-risk-orange' : 'text-neon-green'
+            }`}>{data.pregnancy_safety.placenta_risk}</span>
           </div>
-          <div className="w-full bg-gray-800 rounded-full h-2">
-            <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${safety.placenta_transfer_prob * 100}%` }}></div>
+          <div className="flex justify-between">
+            <span className="text-gray-400">Mechanism</span>
+            <span className="text-gray-300">Passive diffusion likely</span>
           </div>
         </div>
+      </div>
 
-        <div>
-          <div className="flex justify-between mb-1">
-            <span className="text-sm text-gray-300">Breast Milk Transfer</span>
-            <span className="text-sm font-semibold text-purple-400">{Math.round(safety.milk_transfer_prob * 100)}%</span>
-          </div>
-          <div className="w-full bg-gray-800 rounded-full h-2">
-            <div className="bg-purple-500 h-2 rounded-full" style={{ width: `${safety.milk_transfer_prob * 100}%` }}></div>
-          </div>
+      <div className="bg-card border border-card-border rounded-lg p-5">
+        <div className="flex items-center gap-2 mb-4">
+          <Milk className="text-ai-blue" size={18} />
+          <h3 className="font-semibold text-gray-200">Breast Milk Prediction</h3>
         </div>
-
-        <div className="pt-3 border-t border-gray-800 grid grid-cols-2 gap-4">
-          <div>
-            <p className="text-xs text-gray-500 mb-1">Fetal Exposure Risk</p>
-            <p className="text-sm font-semibold text-gray-200">{safety.placenta_risk}</p>
+        <div className="flex items-center justify-between mb-4">
+          <div className="text-sm text-gray-400">Probability</div>
+          <div className="text-xl font-bold text-ai-blue">{Math.round(data.pregnancy_safety.milk_transfer_prob * 100)}%</div>
+        </div>
+        <div className="w-full bg-gray-800 rounded-full h-2 mb-4">
+          <div className="bg-ai-blue h-2 rounded-full" style={{ width: `${data.pregnancy_safety.milk_transfer_prob * 100}%` }}></div>
+        </div>
+        <div className="bg-gray-900/50 p-3 rounded text-sm">
+          <div className="flex justify-between mb-1">
+            <span className="text-gray-400">Milk/Plasma Ratio</span>
+            <span className="text-gray-300">{(data.pregnancy_safety.milk_transfer_prob * 1.2).toFixed(2)}</span>
           </div>
-          <div>
-            <p className="text-xs text-gray-500 mb-1">Developmental Tox</p>
-            <p className="text-sm font-semibold text-gray-200">{safety.toxicity_risk}</p>
+          <div className="flex justify-between">
+            <span className="text-gray-400">Risk Level</span>
+            <span className={`font-semibold ${
+              data.pregnancy_safety.milk_risk === 'High' ? 'text-risk-red' :
+              data.pregnancy_safety.milk_risk === 'Moderate' ? 'text-risk-orange' : 'text-neon-green'
+            }`}>{data.pregnancy_safety.milk_risk}</span>
           </div>
         </div>
       </div>

@@ -9,8 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "#050B18",
+        card: "#101B32",
+        "card-border": "#1A2B4C",
+        "ai-blue": "#00A8FF",
+        "neon-green": "#39FF14",
+        "risk-orange": "#FF8C00",
+        "risk-red": "#FF0000",
+        "scientific-purple": "#8A2BE2",
       },
     },
   },
