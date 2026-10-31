@@ -1,0 +1,32 @@
+[
+  {
+    "input_no": "1",
+    "chemical_name": "Curcumin",
+    "folder": "tradchem/data/ayurveda/formulations/example-formulation-1/example-sub-component-1/curcumin",
+    "identity_status": "REVIEW_REQUIRED",
+    "checker_status": "STANDALONE_VALID",
+    "validation_status": "FLAGGED",
+    "exported_targets": 1,
+    "warnings_or_errors": "Name match (CID 969516) differs from Structure match (CID 2889). Structure CID prioritized. curcumin has 1 protein(s); the project expects the top 10"
+  },
+  {
+    "input_no": "2",
+    "chemical_name": "Gallic acid",
+    "folder": "tradchem/data/ayurveda/formulations/example-formulation-1/example-sub-component-1/gallic-acid",
+    "identity_status": "VERIFIED",
+    "checker_status": "STANDALONE_VALID",
+    "validation_status": "VALID",
+    "exported_targets": 7,
+    "warnings_or_errors": " gallic-acid has 7 protein(s); the project expects the top 10"
+  },
+  {
+    "input_no": "3",
+    "chemical_name": "Piperine",
+    "folder": "tradchem/data/ayurveda/formulations/example-formulation-1/example-sub-component-1/piperine",
+    "identity_status": "REVIEW_REQUIRED",
+    "checker_status": "STANDALONE_VALID",
+    "validation_status": "FLAGGED",
+    "exported_targets": 1,
+    "warnings_or_errors": "Name match (CID 638024) differs from Structure match (CID 4840). Structure CID prioritized. piperine has 1 protein(s); the project expects the top 10"
+  }
+]

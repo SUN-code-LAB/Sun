@@ -1,0 +1,6 @@
+
+*.pyc
+__pycache__/
+.tradchem_cache.db
+.pytest_cache/
+demo_run_artifacts/

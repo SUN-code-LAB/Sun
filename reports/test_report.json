@@ -1,0 +1,28 @@
+{
+  "timestamp": 1793431188.6254618,
+  "suite": "Trad-Chem-LLM Offline Deterministic Tests",
+  "total_tests": 18,
+  "passed": 18,
+  "failed": 0,
+  "test_cases": [
+    "test_utf8_bom_and_exact_headers",
+    "test_quoted_names_with_commas_and_brackets",
+    "test_whitespace_trimming",
+    "test_mojibake_proposal_and_review",
+    "test_doubled_backslash_handling",
+    "test_invalid_smiles",
+    "test_salt_and_mixture_detection",
+    "test_slugify",
+    "test_pubchem_cid_matching",
+    "test_pubchem_name_structure_conflict",
+    "test_best_structure_selection_pdb_resolution",
+    "test_best_structure_fallback_to_alphafold",
+    "test_evidence_tiering_and_target_capping",
+    "test_single_canonical_record_generates_all_formats",
+    "test_write_chemical_folder_creates_four_files_and_passes_check",
+    "test_checker_rejects_example_source_ref",
+    "test_checker_warns_on_fewer_than_10_targets",
+    "test_packaging_zip_contains_only_four_entries_in_chemical_folder"
+  ],
+  "status": "ALL_PASSED"
+}
