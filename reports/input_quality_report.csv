@@ -1,0 +1,4 @@
+﻿raw_no,raw_name,raw_smiles,is_valid_smiles,is_mixture,is_salt,has_ambiguous_stereochemistry,doubled_backslash_found,mojibake_proposals,warnings,errors
+1,Curcumin,COC1=C(C=CC(=C1)C=CC(=O)CC(=O)C=CC2=CC(=C(C=C2)O)OC)O,YES,NO,NO,NO,NO,{},,
+2,Gallic acid,C1=C(C=C(C(=C1O)O)O)C(=O)O,YES,NO,NO,NO,NO,{},,
+3,Piperine,C1CCN(CC1)C(=O)C=CC=CC2=CC3=C(C=C2)OCO3,YES,NO,NO,NO,NO,{},,
